@@ -6,11 +6,16 @@
 功能模块分为
 
 请求服务
-	|------不断装载代理handler并请求HTTPServer
+	|------不断装载代理handler并请求CheckServer
+
 
 HTTPServer
-	|------只要有ip就激活库中纪录
+	|
+	|---CheckServer
+	|		|------只要有ip就激活库中纪录
+	|---ProxyServer
+	|		|------提供获得代理IP的API
+			|------对代理IP进行增删API
 
-ProxyServer
-	|------提供获得激活IP的API
-	|------提供代理爬虫入库API
+SQLite
+	|----IP代理池
