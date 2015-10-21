@@ -18,4 +18,4 @@ HTTPServer
 			|------对代理IP进行增删API
 
 SQLite
-	|----IP代理池
+	|----IP代理数据库

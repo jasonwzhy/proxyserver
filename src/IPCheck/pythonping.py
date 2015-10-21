@@ -207,7 +207,7 @@ if __name__ == '__main__':
     delaycount = 0
     for i in xrange(4):
         # try:
-        delay = do_one("218.92.227.165",2)
+        delay = do_one("14.106.245.156",2)
         print delay
         if delay == None:
             print "failed connect..."
@@ -215,11 +215,14 @@ if __name__ == '__main__':
         delaycount += delay
     print delaycount/4
     import urllib2
-    proxyhandler = urllib2.ProxyHandler({"http":'218.92.227.165:19329'})
+    proxyhandler = urllib2.ProxyHandler({"http":'14.106.245.156:80'})
     opener = urllib2.build_opener(proxyhandler)
     urllib2.install_opener(opener)
-    while True:
-        re = urllib2.urlopen("http://104.156.239.219:8000/")
+    # while True:
+    # import ssl
+    # ssl._create_default_https_context = ssl._create_unverified_context
+    re = urllib2.urlopen("http://104.156.239.219:8000/item/2",timeout=10)
+    # re = urllib2.urlopen("https://www.baidu.com")
     
     print re.read()
     # print do_one('www.baidu.com',2)
