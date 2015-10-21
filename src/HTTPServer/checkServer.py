@@ -50,6 +50,20 @@ class ItemErr(Resource):
 	def render_GET(self,request):
 		return "<html>Get Item ID Error</html>"
 
+
+class APIServerHandle(Resource):
+	def getChild(self,name,request):
+		#export the url method
+		#
+		if name == "":
+			return self
+
+		return Resource.getChild(self,name,request)
+	def render_GET(self,request):
+		#return not found resource
+		return ""
+
+
 root = ServerHandle()
 root.putChild('item',Item())
 
