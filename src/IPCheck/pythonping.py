@@ -207,7 +207,7 @@ if __name__ == '__main__':
     delaycount = 0
     for i in xrange(4):
         # try:
-        delay = do_one("14.106.245.156",2)
+        delay = do_one("120.83.210.195",2)
         print delay
         if delay == None:
             print "failed connect..."
@@ -215,7 +215,7 @@ if __name__ == '__main__':
         delaycount += delay
     print delaycount/4
     import urllib2
-    proxyhandler = urllib2.ProxyHandler({"http":'14.106.245.156:80'})
+    proxyhandler = urllib2.ProxyHandler({"http":'120.83.210.195:80'})
     opener = urllib2.build_opener(proxyhandler)
     urllib2.install_opener(opener)
     # while True:

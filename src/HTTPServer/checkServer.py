@@ -10,6 +10,7 @@ class NotFount(Resource):
 		return "<h2>Page Not Found</h2>"
 class ServerHandle(Resource):
 	def getChild(self,name,request):
+		print "In ServerHandle"
 		print "name is :",name
 		print "request is:",request.args
 		print "Client IP is:",request.getClientIP()
@@ -24,6 +25,7 @@ class ServerHandle(Resource):
 		return "<h1>Welcome server!<h1>"
 class SSLServerHandle(Resource):
 	def getChild(self,name,request):
+		print "In SSLServerHandle"
 		print "This is SSL :"
 		print "Client IP is:",request.getClientIP()
 		if name == "":
@@ -32,6 +34,9 @@ class SSLServerHandle(Resource):
 
 class Item(Resource):
 	def getChild(self,name,request):
+		print "In Item",dir(self)
+		print "self",self.render_HEAD
+		print "getHost",request.host
 		print "get item id is:",name
 		print "request is:",request.args
 		print "Client IP is:",request.getClientIP()
@@ -63,13 +68,23 @@ class APIServerHandle(Resource):
 		#return not found resource
 		return ""
 
+class HttpServerHandle():
+	pass
+
+class HttpsServerHandle():
+	pass
+
 
 root = ServerHandle()
-root.putChild('item',Item())
-
 root2 = SSLServerHandle()
+
+root.putChild('item',Item())
+root2.putChild('item',Item())
+
+
 factory = Site(root)
 sslfactory = Site(root2)
+
 reactor.listenTCP(8000,factory)
 sslContext = ssl.DefaultOpenSSLContextFactory(
 		'/tmp/privkey.pem',
