@@ -215,13 +215,20 @@ if __name__ == '__main__':
         delaycount += delay
     print delaycount/4
     import urllib2
-    proxyhandler = urllib2.ProxyHandler({"http":'120.83.210.195:80'})
-    opener = urllib2.build_opener(proxyhandler)
-    urllib2.install_opener(opener)
+    # proxyhandler = urllib2.ProxyHandler({"http":'120.83.210.195:80'})
+    # opener = urllib2.build_opener(proxyhandler)
+    # urllib2.install_opener(opener)
     # while True:
     # import ssl
     # ssl._create_default_https_context = ssl._create_unverified_context
-    re = urllib2.urlopen("http://104.156.239.219:8000/item/2",timeout=10)
+    import time
+    loopcount = 100000
+    while  loopcount >0:
+        re = urllib2.urlopen("http://127.0.0.1:8000/getip/?live=1&count=199",timeout=10)
+        loopcount -= 1
+        # time.sleep()
+
+    re = urllib2.urlopen("http://127.0.0.1:8000/item/2",timeout=10)
     # re = urllib2.urlopen("https://www.baidu.com")
     
     print re.read()

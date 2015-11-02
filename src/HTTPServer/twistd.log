@@ -3,3 +3,8 @@
 2015-10-20 16:01:12+0800 [-] reactor class: twisted.internet.selectreactor.SelectReactor.
 2015-10-20 16:01:12+0800 [-] Site starting on 8080
 2015-10-20 16:01:12+0800 [-] Starting factory <twisted.web.server.Site instance at 0x1065403b0>
+2015-10-25 22:25:01+0800 [-] Received SIGTERM, shutting down.
+2015-10-25 22:25:01+0800 [-] (TCP Port 8080 Closed)
+2015-10-25 22:25:01+0800 [-] Stopping factory <twisted.web.server.Site instance at 0x1065403b0>
+2015-10-25 22:25:01+0800 [-] Main loop terminated.
+2015-10-25 22:25:01+0800 [-] Server Shut Down.
