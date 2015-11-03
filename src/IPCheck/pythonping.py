@@ -228,7 +228,7 @@ if __name__ == '__main__':
     #     loopcount -= 1
     #     # time.sleep()
 
-    re = urllib2.urlopen("http://127.0.0.1:8000/verify",timeout=10)
+    re = urllib2.urlopen("http://104.156.239.219:8000/verify",timeout=10)
     # re = urllib2.urlopen("https://www.baidu.com")
     
     print re.read()

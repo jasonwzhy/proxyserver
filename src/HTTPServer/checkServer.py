@@ -96,8 +96,8 @@ class Verify(Resource):
 			protocol = HTTP
 		elif HTTPSPORT == request.getHost().port:
 			protocol = HTTPS
-		# isexist_query = 'select * from ProxyIP where proxyip="%s" and port=%s and protocol=%s'%(cip,cport,protocol)
-		isexist_query = "select * from ProxyIP limit 1"
+		isexist_query = 'select * from ProxyIP where proxyip="%s" and port=%s and protocol=%s'%(cip,cport,protocol)
+		# isexist_query = "select * from ProxyIP limit 1"
 		print isexist_query
 
 		def _do_verify(r,l):
@@ -111,8 +111,8 @@ class Verify(Resource):
 			else:
 				print "No such"
 				print l
-				update_query = 'select * from ProxyIP limit 1'
-				dbhandle.runQuery(update_query).addCallback(_do_verify,(cip,cport,protocol))
+				# update_query = 'select * from ProxyIP limit 1'
+				# dbhandle.runQuery(update_query).addCallback(_do_verify,(cip,cport,protocol))
 			# print "In _check"
 			# self.failUnless(int(result[0][0]) == 0, "Interaction not rolled back")
 			# print "In _check: ",result
