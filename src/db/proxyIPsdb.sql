@@ -1,7 +1,7 @@
 CREATE TABLE ProxyIP(
-	id			INTEGER 	PRIMARY KEY AUTOINCREMENT,
-	proxyip		CHAR(16)	NOT NULL,
-	port 		INT 		NOT NULL,
+	id			INTEGER 	PRIMARY KEY AUTOINCREMENT,	
+	proxyip		CHAR(16)	NOT NULL,	#代理IP
+	port 		INT 		NOT NULL,	#代理端口
 	protocol	INT			NOT NULL DEFAULT 0,
 	location	INT 		NOT NULL DEFAULT 0,
 	description	TEXT,

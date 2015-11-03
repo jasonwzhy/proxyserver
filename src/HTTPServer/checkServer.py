@@ -58,7 +58,6 @@ class GetIp(Resource):
 		res = ResponseTpl(request.args).loadrdata([{"ip":r[1],"port":r[2],"protocol":r[3],"location":r[4],"live":r[6],"checkeddt":r[7],"checkcount":r[9]} for r in result])
 		request.write(res)
 		request.finish()
-		# return "<html><h3>Get ips !</h3></html>",str(result)
 		
 	def render_GET(self,request):
 		self.queryip(request.args,request)
@@ -77,7 +76,7 @@ class Verify(Resource):
 
 	def printverify(self,request):
 		"""
-		TODO:get the ip from request and verify proxy IPs in the DB
+		# FOR TEST
 		"""
 		print 'printverify',request.client.port
 		
@@ -87,22 +86,44 @@ class Verify(Resource):
 			print "This is HTTPS request"
 
 	def verify(self,request):
-		cip = request.client.ip
+		"""
+		TODO:get the ip from request and verify proxy IPs in the DB
+		"""
+		cip = request.client.host
 		cport = request.client.port
 		protocol = 0
 		if HTTPPORT == request.getHost().port:
 			protocol = HTTP
 		elif HTTPSPORT == request.getHost().port:
 			protocol = HTTPS
-		isexist_query = "select * from ProxyIP "
-		dbhandle.runQuery()
-		def _do_verify(cip,cport,protocol):
+		# isexist_query = 'select * from ProxyIP where proxyip="%s" and port=%s and protocol=%s'%(cip,cport,protocol)
+		isexist_query = "select * from ProxyIP limit 1"
+		print isexist_query
 
-		pass
+		def _do_verify(r,l):
+			print r,l
+			pass
+
+		def _check(result,l):
+			if result:
+				print result
+			
+			else:
+				print "No such"
+				print l
+				update_query = 'select * from ProxyIP limit 1'
+				dbhandle.runQuery(update_query).addCallback(_do_verify,(cip,cport,protocol))
+			# print "In _check"
+			# self.failUnless(int(result[0][0]) == 0, "Interaction not rolled back")
+			# print "In _check: ",result
+
+		dbhandle.runQuery(isexist_query).addCallback(_check,(cip,cport,protocol))
+
 
 	def render_GET(self,request):
-		self.printverify(request)
-		return "<html><h3>verify ok!</h3></html>"
+		# self.printverify(request)
+		self.verify(request)
+		return NOT_DONE_YET
 
 
 class NotFount(Resource):
