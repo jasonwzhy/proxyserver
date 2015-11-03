@@ -204,18 +204,18 @@ if __name__ == '__main__':
     # verbose_ping("google.com")
     # verbose_ping("a-test-url-taht-is-not-available.com")
     # verbose_ping("192.168.1.1")
-    delaycount = 0
-    for i in xrange(4):
-        # try:
-        delay = do_one("120.83.210.195",2)
-        print delay
-        if delay == None:
-            print "failed connect..."
-            break
-        delaycount += delay
-    print delaycount/4
+    # delaycount = 0
+    # for i in xrange(4):
+    #     # try:
+    #     delay = do_one("120.83.210.195",2)
+    #     print delay
+    #     if delay == None:
+    #         print "failed connect..."
+    #         break
+    #     delaycount += delay
+    # print delaycount/4
     import urllib2
-    proxyhandler = urllib2.ProxyHandler({"http":'218.92.227.166:34043'})
+    proxyhandler = urllib2.ProxyHandler({"http":'220.198.127.115:9999'})
     opener = urllib2.build_opener(proxyhandler)
     urllib2.install_opener(opener)
     # while True:
@@ -228,7 +228,7 @@ if __name__ == '__main__':
     #     loopcount -= 1
     #     # time.sleep()
 
-    re = urllib2.urlopen("http://104.156.239.219:8000/verify",timeout=10)
+    re = urllib2.urlopen("http://104.156.239.219:8000/verify",timeout=20)
     # re = urllib2.urlopen("https://www.baidu.com")
     
     print re.read()

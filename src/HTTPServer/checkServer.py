@@ -90,13 +90,13 @@ class Verify(Resource):
 		TODO:get the ip from request and verify proxy IPs in the DB
 		"""
 		cip = request.client.host
-		cport = request.client.port
+		# cport = request.client.port
 		protocol = 0
 		if HTTPPORT == request.getHost().port:
 			protocol = HTTP
 		elif HTTPSPORT == request.getHost().port:
 			protocol = HTTPS
-		isexist_query = 'select * from ProxyIP where proxyip="%s" and port=%s and protocol=%s'%(cip,cport,protocol)
+		isexist_query = 'select * from ProxyIP where proxyip="%s" and protocol=%s'%(cip,protocol)
 		# isexist_query = "select * from ProxyIP limit 1"
 		print isexist_query
 
