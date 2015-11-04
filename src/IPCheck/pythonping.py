@@ -1,57 +1,5 @@
 #!/usr/bin/env python
 
-"""
-    A pure python ping implementation using raw socket.
-    Note that ICMP messages can only be sent from processes running as root.
-    Derived from ping.c distributed in Linux's netkit. That code is
-    copyright (c) 1989 by The Regents of the University of California.
-    That code is in turn derived from code written by Mike Muuss of the
-    US Army Ballistic Research Laboratory in December, 1983 and
-    placed in the public domain. They have my thanks.
-    Bugs are naturally mine. I'd be glad to hear about them. There are
-    certainly word - size dependenceies here.
-    Copyright (c) Matthew Dixon Cowles, <http://www.visi.com/~mdc/>.
-    Distributable under the terms of the GNU General Public License
-    version 2. Provided with no warranties of any sort.
-    Original Version from Matthew Dixon Cowles:
-      -> ftp://ftp.visi.com/users/mdc/ping.py
-    Rewrite by Jens Diemer:
-      -> http://www.python-forum.de/post-69122.html#69122
-    Revision history
-    ~~~~~~~~~~~~~~~~
-    March 11, 2010
-    changes by Samuel Stauffer:
-    - replaced time.clock with default_timer which is set to
-      time.clock on windows and time.time on other systems.
-    May 30, 2007
-    little rewrite by Jens Diemer:
-     -  change socket asterisk import to a normal import
-     -  replace time.time() with time.clock()
-     -  delete "return None" (or change to "return" only)
-     -  in checksum() rename "str" to "source_string"
-    November 22, 1997
-    Initial hack. Doesn't do much, but rather than try to guess
-    what features I (or others) will want in the future, I've only
-    put in what I need now.
-    December 16, 1997
-    For some reason, the checksum bytes are in the wrong order when
-    this is run under Solaris 2.X for SPARC but it works right under
-    Linux x86. Since I don't know just what's wrong, I'll swap the
-    bytes always and then do an htons().
-    December 4, 2000
-    Changed the struct.pack() calls to pack the checksum and ID as
-    unsigned. My thanks to Jerome Poincheval for the fix.
-    Januari 27, 2015
-    Changed receive response to not accept ICMP request messages.
-    It was possible to receive the very request that was sent.
-    Last commit info:
-    ~~~~~~~~~~~~~~~~~
-    $LastChangedDate: $
-    $Rev: $
-    $Author: $
-"""
-
-
 import os, sys, socket, struct, select, time
 
 if sys.platform == "win32":
