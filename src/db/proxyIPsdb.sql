@@ -10,7 +10,7 @@ CREATE TABLE ProxyIP(
 	checkedts	INT			NOT NULL DEFAULT 0,
 	checkcount	INT			NOT NULL DEFAULT 0,
 	createdt	DATETIME	NOT NULL DEFAULT (datetime('now', 'localtime')),
-	createts	INT			NOT NULL DEFAULT 0
+	createts	INT			NOT NULL DEFAULT (strftime('%s','now'))
 );
 #protocol 0-HTTP 1-HTTPS
 #location 0-china 1-foreign
